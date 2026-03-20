@@ -16,14 +16,14 @@ content-type: application/json
 
 
 ### Mise à jour d'un article
-PUT http://{{host}}:{{port}}/tasks/1
+PUT http://{{host}}:{{port}}/tasks/69bd2e80038d3eaacee419ad
 content-type: application/json
 
 {
-  "name": "Tâche modidiée",
+  "name": "Tâche modifiée",
   "done": true
 }
 
 
 ### Suppression d'un article
-DELETE http://{{host}}:{{port}}/tasks/1
+DELETE http://{{host}}:{{port}}/tasks/69bd2e99038d3eaacee419b2
