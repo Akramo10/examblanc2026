@@ -1,0 +1,29 @@
+### Récupération de tous les articles
+GET http://{{host}}:{{port}}/tasks
+
+
+### Récupération d'un article
+GET http://{{host}}:{{port}}/tasks/69bd2b8342a5908145d7867b
+
+
+### Création d'un article
+POST http://{{host}}:{{port}}/tasks
+content-type: application/json
+
+{
+  "name": "Nouvelle tâche"
+}
+
+
+### Mise à jour d'un article
+PUT http://{{host}}:{{port}}/tasks/1
+content-type: application/json
+
+{
+  "name": "Tâche modidiée",
+  "done": true
+}
+
+
+### Suppression d'un article
+DELETE http://{{host}}:{{port}}/tasks/1
