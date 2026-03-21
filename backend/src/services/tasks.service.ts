@@ -14,7 +14,7 @@ const createTask = async (task: Task) => {
 };
 
 const updateTask = async (id: string, task: Task) => {
-  return await TasksModel.findByIdAndUpdate(id, task);
+  return await TasksModel.findByIdAndUpdate(id, task, {new: true});
 };
 
 const deleteTask = async (id: string) => {
