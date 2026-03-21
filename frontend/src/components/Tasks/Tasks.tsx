@@ -23,6 +23,16 @@ export const Tasks = () => {
         
     }, []);
 
+    const onChange = async (task: Task) => {
+        task.done = !task.done;
+        const { data } = await axios.put(`http://localhost:5000/tasks/${task._id}`, task);
+        const tasksUpdated = tasks?.map((t) => {
+            if(t._id === task._id) t.done = data.done
+            return t;
+        });
+        setTasks(tasksUpdated);
+    }
+
     return (
         <>
             <h1>TODO-LIST</h1>
@@ -30,7 +40,7 @@ export const Tasks = () => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     tasks?.map((task) => (
-                        <Checkbox key={task._id}>{task.name}</Checkbox>
+                        <Checkbox key={task._id} onChange={() => onChange(task)} checked={task.done}>{task.done ? <s>{task.name}</s> : task.name}</Checkbox>
                     ))
                 }
             </div>
