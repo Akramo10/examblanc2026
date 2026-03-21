@@ -1,5 +1,6 @@
 import { Task } from "@/types/task.type";
-import { Checkbox, CheckboxOptionType, CheckboxProps, Form } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Checkbox, CheckboxOptionType } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -33,6 +34,11 @@ export const Tasks = () => {
         setTasks(tasksUpdated);
     }
 
+    const onDelete = async (task: Task) => {
+        await axios.delete(`http://localhost:5000/tasks/${task._id}`);
+        setTasks(tasks?.filter((t) => t._id !== task._id));
+    }
+
     return (
         <>
             <h1>TODO-LIST</h1>
@@ -40,7 +46,11 @@ export const Tasks = () => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     tasks?.map((task) => (
-                        <Checkbox key={task._id} onChange={() => onChange(task)} checked={task.done}>{task.done ? <s>{task.name}</s> : task.name}</Checkbox>
+                        <div key={task._id} style={{display: 'flex', flexDirection: 'row'}}>
+                            <Checkbox onChange={() => onChange(task)} checked={task.done}>{task.done ? <s>{task.name}</s> : task.name}</Checkbox>
+                            <Button icon={<DeleteOutlined />} danger onClick={() => onDelete(task)} />
+                        </div>
+                        
                     ))
                 }
             </div>
