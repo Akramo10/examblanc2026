@@ -1,11 +1,12 @@
 import { TaskType } from "@/types/task.type";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { AddTask } from "../AddTask/AddTask";
 import { Task } from "../Task/Task";
 
 export const Tasks = () => {
 
-    const [tasks, setTasks] = useState<TaskType[]>();
+    const [tasks, setTasks] = useState<TaskType[]>([]);
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -20,6 +21,11 @@ export const Tasks = () => {
         task.done = !task.done;
         updateTask(task);
     }    
+
+    const createTask = async (name: string) => {
+        const { data } = await axios.post(`http://localhost:5000/tasks/`, {name});
+        setTasks([...tasks, data]);
+    }
 
     const updateTask = async (task: TaskType) => {
         const { data } = await axios.put(`http://localhost:5000/tasks/${task._id}`, task);
@@ -39,6 +45,7 @@ export const Tasks = () => {
         <>
             <h1>TODO-LIST</h1>
             <h3>Liste des tâches à réaliser</h3>
+            <AddTask onAdd={createTask} />
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     tasks?.map((task) => (
