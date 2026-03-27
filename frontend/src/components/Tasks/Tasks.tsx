@@ -36,10 +36,10 @@ export const Tasks = () => {
         setTasks(tasksUpdated);
     }
 
-    const deleteStudent = async (task: TaskType) => {
+    const deleteTask = async (task: TaskType) => {
         await axios.delete(`http://localhost:5000/tasks/${task._id}`);
         setTasks(tasks?.filter((t) => t._id !== task._id));
-    }
+    }    
 
     return (
         <>
@@ -49,7 +49,7 @@ export const Tasks = () => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     tasks?.map((task) => (
-                        <Task key={task._id} task={task} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteStudent} />
+                        <Task key={task._id} task={task} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} />
                     ))
                 }
             </div>
