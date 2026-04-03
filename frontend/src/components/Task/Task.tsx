@@ -28,12 +28,12 @@ export const Task = ({ task, onCheck, onEdit, onDelete, onTaskClick } : TaskProp
     }
 
     return (
-        <div key={task._id} style={{display: 'flex', flexDirection: 'row'}}>
+        <div key={task._id} className={`task ${task.done ? "completed" : ""}`}>
             {
                 editing ? 
                     <Space>
                         <Checkbox onChange={() => onCheck(task)} checked={task.done} />
-                        <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                        <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} className="task-title"/>
                         <Button icon={<CheckOutlined />} onClick={edit} />
                         <Button icon={<CloseOutlined />} danger onClick={cancel} />
                     </Space>

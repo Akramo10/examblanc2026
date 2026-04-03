@@ -3,5 +3,9 @@
 import { Tasks } from "@/components/Tasks/Tasks";
 
 export default function Home() {
-  return <Tasks />;
+  return (
+    <div className="container">
+      <Tasks />
+    </div>
+  )
 }

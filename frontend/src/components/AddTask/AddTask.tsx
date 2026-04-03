@@ -17,8 +17,8 @@ export const AddTask = ({ onAdd } : AddTaskProps) => {
     }
 
     return (
-        <>
+        <form className="add-task">
             <input type="text" placeholder="Nouvelle tâche" value={name} onChange={(e) => setName(e.target.value)} onKeyDown={(e) => handleKeyDown(e)} />
-        </>
+        </form>
     )
 }

@@ -1,0 +1,54 @@
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .task:last-child {
+    border-bottom: none;
+  }
+  
+  /* Texte */
+  .task-title {
+    font-size: 15px;
+  }
+  
+  /* Tâche terminée */
+  .task.completed .task-title {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  .task-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  /* variantes */
+  .button-delete {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .button-delete:hover {
+    background-color: #c0392b;
+  }
+  
+  .button-toggle {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .button-toggle:hover {
+    background-color: #2980b9;
+  }
