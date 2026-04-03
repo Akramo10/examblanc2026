@@ -1,7 +1,7 @@
 import { Task, TasksModel } from "../models/tasks.model";
 
 const getTasks = async () => {
-  return await TasksModel.find();
+  return await TasksModel.find({}, {_id: 1, name: 1, done: 1});
 };
 
 const getTask = async (id: string) => {
