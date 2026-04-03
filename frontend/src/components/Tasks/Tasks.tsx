@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TaskType } from "@/types/task.type";
+import { TaskDetailsType, TaskType } from "@/types/task.type";
 import { AddTask } from "../AddTask/AddTask";
 import { Filters } from "../Filters/Filters";
 import { Task } from "../Task/Task";
+import { TaskDetails } from "../TaskDetails/TaskDetails";
 
 export const Tasks = () => {
 
     const [tasks, setTasks] = useState<TaskType[]>([]);
     const [filteredTasks, setFilteredTasks] = useState<TaskType[]>([]);
     const [activeFilter, setActiveFilter] = useState<boolean>();
+    const [selectedTask, setSelectedTask] = useState<TaskDetailsType>();
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -54,6 +56,11 @@ export const Tasks = () => {
 
     const filter = () => {
         setFilteredTasks(activeFilter !== undefined ? tasks.filter((t) => t.done === activeFilter) : tasks)
+    }  
+
+    const showDetails = async (task: TaskType) => {
+        const { data } = await axios.get(`http://localhost:5000/tasks/${task._id}`);
+        setSelectedTask(data);
     }   
 
     return (
@@ -64,11 +71,21 @@ export const Tasks = () => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     filteredTasks?.map((task) => (
-                        <Task key={task._id} task={task} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} />
+                        <Task key={task._id} task={task} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} onTaskClick={showDetails} />
                     ))
                 }
             </div>
             <Filters onFilter={onSelectFilter} />
+
+            
+            {
+                selectedTask ? (
+                    <>
+                        <hr /> 
+                        <TaskDetails task={selectedTask} />
+                    </>
+                ) : <></>
+            }
             
         </>
         

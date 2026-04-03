@@ -1,6 +1,6 @@
 import { TaskType } from "@/types/task.type";
 import { EditOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Checkbox, Button } from "antd";
+import { Checkbox, Button, Space } from "antd";
 import { useState } from "react";
 
 type TaskProps = {
@@ -8,9 +8,10 @@ type TaskProps = {
     onCheck: (task: TaskType) => void;
     onEdit: (task: TaskType) => void;
     onDelete: (task: TaskType) => void;
+    onTaskClick: (task: TaskType) => void;
 }
 
-export const Task = ({ task, onCheck, onEdit, onDelete } : TaskProps) => {
+export const Task = ({ task, onCheck, onEdit, onDelete, onTaskClick } : TaskProps) => {
 
     const [editing, setEditing] = useState<boolean>(false);
     const [newName, setNewName] = useState<string>(task.name);
@@ -30,17 +31,19 @@ export const Task = ({ task, onCheck, onEdit, onDelete } : TaskProps) => {
         <div key={task._id} style={{display: 'flex', flexDirection: 'row'}}>
             {
                 editing ? 
-                    <>
-                        <Checkbox onChange={() => onCheck(task)} checked={task.done}>{<input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />}</Checkbox>
+                    <Space>
+                        <Checkbox onChange={() => onCheck(task)} checked={task.done} />
+                        <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
                         <Button icon={<CheckOutlined />} onClick={edit} />
                         <Button icon={<CloseOutlined />} danger onClick={cancel} />
-                    </>
+                    </Space>
                 :
-                    <>
-                        <Checkbox onChange={() => onCheck(task)} checked={task.done}>{task.done ? <s>{task.name}</s> : task.name}</Checkbox>
+                    <Space style={{verticalAlign: "center"}}>
+                        <Checkbox onChange={() => onCheck(task)} checked={task.done} />
+                        <div onClick={() => onTaskClick(task)} >{task.done ? <s>{task.name}</s> : task.name}</div>
                         <Button icon={<EditOutlined />} onClick={() => setEditing(true)} />
                         <Button icon={<DeleteOutlined />} danger onClick={() => onDelete(task)} />
-                    </>
+                    </Space>
                 
             }
             
