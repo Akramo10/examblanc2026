@@ -75,8 +75,6 @@ export const Tasks = ({ selectedUser } : TasksProps) => {
 
     return (
         <>
-            <h1>TODO-LIST</h1>
-            <br />
             <h4>Liste des tâches à réaliser</h4>
             <br />
             <AddTask onAdd={createTask} />
