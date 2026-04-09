@@ -41,7 +41,7 @@ export const CreateUser = ({ addUser, closePanel }: CreateUserProps) => {
                     <Input type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
                 </Form.Item>
                 <Form.Item>
-                    <Button htmlType="submit">Créer l'utilisateur et accéder à la liste</Button>
+                    <Button type="primary" htmlType="submit" disabled={!name || !firstname} >Créer l'utilisateur et accéder à la liste</Button>
                 </Form.Item>
             </Form>
         </>
