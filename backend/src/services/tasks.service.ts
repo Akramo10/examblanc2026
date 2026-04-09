@@ -2,7 +2,7 @@ import { Task, TasksModel } from "../models/tasks.model";
 import { IUser } from "../models/users.model";
 
 const getTasks = async () => {
-  return await TasksModel.find({}, {_id: 1, name: 1, done: 1, user: 1});
+  return await TasksModel.find({}, {createdAt: 0});
 };
 
 const getTask = async (id: string) => {
