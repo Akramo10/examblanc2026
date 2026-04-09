@@ -1,17 +1,19 @@
 import { TaskType } from "@/types/task.type";
+import { UserType } from "@/types/user.type";
 import { EditOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { Checkbox, Button, Space } from "antd";
 import { useState } from "react";
 
 type TaskProps = {
     task: TaskType;
+    selectedUser: UserType;
     onCheck: (task: TaskType) => void;
     onEdit: (task: TaskType) => void;
     onDelete: (task: TaskType) => void;
     onTaskClick: (task: TaskType) => void;
 }
 
-export const Task = ({ task, onCheck, onEdit, onDelete, onTaskClick } : TaskProps) => {
+export const Task = ({ task, selectedUser, onCheck, onEdit, onDelete, onTaskClick } : TaskProps) => {
 
     const [editing, setEditing] = useState<boolean>(false);
     const [newName, setNewName] = useState<string>(task.name);
@@ -25,6 +27,10 @@ export const Task = ({ task, onCheck, onEdit, onDelete, onTaskClick } : TaskProp
     const cancel = () => {
         setNewName(task.name);
         setEditing(false);
+    }
+
+    const isCreator = () => {
+        return task.user && task.user._id == selectedUser._id;
     }
 
     return (
@@ -41,8 +47,8 @@ export const Task = ({ task, onCheck, onEdit, onDelete, onTaskClick } : TaskProp
                     <Space style={{verticalAlign: "center"}}>
                         <Checkbox onChange={() => onCheck(task)} checked={task.done} />
                         <div onClick={() => onTaskClick(task)} >{task.done ? <s>{task.name}</s> : task.name}</div>
-                        <Button icon={<EditOutlined />} onClick={() => setEditing(true)} />
-                        <Button icon={<DeleteOutlined />} danger onClick={() => onDelete(task)} />
+                        {isCreator() && <Button icon={<EditOutlined />} onClick={() => setEditing(true)} />}
+                        {isCreator() && <Button icon={<DeleteOutlined />} danger onClick={() => onDelete(task)} />}
                     </Space>
                 
             }

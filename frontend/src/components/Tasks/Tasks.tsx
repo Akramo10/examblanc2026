@@ -79,7 +79,7 @@ export const Tasks = ({ selectedUser } : TasksProps) => {
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
                     filteredTasks?.map((task) => (
-                        <Task key={task._id} task={task} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} onTaskClick={showDetails} />
+                        <Task key={task._id} task={task} selectedUser={selectedUser} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} onTaskClick={showDetails} />
                     ))
                 }
             </div>
