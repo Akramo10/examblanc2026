@@ -50,6 +50,10 @@ export const Login = ({ onSelectUser } : LoginProps) => {
         setCreateVisible(false);
     }
 
+    const closePanel = () => {
+        setCreateVisible(false);
+    }
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
             <Select
@@ -60,7 +64,7 @@ export const Login = ({ onSelectUser } : LoginProps) => {
                 options={getUsersOptions()}
             />
             <div style={{fontSize: '12px'}}>Aucun utilisateur ne correspond ? <a href="#" onClick={() => setCreateVisible(true)}>Créez le votre</a>.</div>
-            {createVisible && <CreateUser onCreate={addUser} />}
+            {createVisible && <CreateUser addUser={addUser} closePanel={closePanel} />}
         </div>
     )
 }

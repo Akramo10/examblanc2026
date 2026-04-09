@@ -1,17 +1,25 @@
+import { CloseOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd"
 import { useState } from "react";
 
 type CreateUserProps = {
-    onCreate: (name: string, firstname: string) => void;
+    addUser: (name: string, firstname: string) => void;
+    closePanel: () => void;
 }
 
-export const CreateUser = ({ onCreate }: CreateUserProps) => {
+export const CreateUser = ({ addUser, closePanel }: CreateUserProps) => {
 
     const [name, setName] = useState<string>("");
     const [firstname, setFirstname] = useState<string>("");
 
     const onSubmit = () => {
-        onCreate(name, firstname);
+        addUser(name, firstname);
+        setName("");
+        setFirstname("");
+    }
+
+    const onClose = () => {
+        closePanel();
         setName("");
         setFirstname("");
     }
@@ -19,7 +27,10 @@ export const CreateUser = ({ onCreate }: CreateUserProps) => {
     return (
         <>
             <hr />
-            <h4><u>Création d'un nouvel utilisateur</u></h4>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <h4><u>Création d'un nouvel utilisateur</u></h4>
+                <Button icon={<CloseOutlined />} onClick={() => onClose()} />
+            </div>
             <Form onFinish={onSubmit}>
                 <Form.Item>
                     Nom : 
