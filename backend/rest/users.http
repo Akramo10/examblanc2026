@@ -1,0 +1,30 @@
+### Récupération de tous les utilisateurs
+GET http://{{host}}:{{port}}/users
+
+
+### Récupération d'un utilisateur
+GET http://{{host}}:{{port}}/users/69bd2b8342a5908145d7867b
+
+
+### Création d'un utilisateur
+POST http://{{host}}:{{port}}/users
+content-type: application/json
+
+{
+  "name": "DOE",
+  "firstname": "John"
+}
+
+
+### Mise à jour d'un utilisateur
+PUT http://{{host}}:{{port}}/users/69bd2e80038d3eaacee419ad
+content-type: application/json
+
+{
+  "name": "DOE",
+  "firstname": "Jane"
+}
+
+
+### Suppression d'un utilisateur
+DELETE http://{{host}}:{{port}}/users/69bd2e99038d3eaacee419b2
