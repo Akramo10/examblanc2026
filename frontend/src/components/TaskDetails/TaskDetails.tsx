@@ -1,4 +1,5 @@
-import { TaskDetailsType, TaskType } from "@/types/task.type"
+import { useFullName } from "@/hooks/useFullName";
+import { TaskDetailsType } from "@/types/task.type";
 import { CheckCircleOutlined, CloseOutlined, SyncOutlined } from "@ant-design/icons";
 import { Button, Tag } from "antd";
 import { Dispatch, SetStateAction } from "react";
@@ -9,6 +10,9 @@ type TaskDetailsProps = {
 }
 
 export const TaskDetails = ({ task, setSelectedTask } : TaskDetailsProps) => {
+
+    const fullname = useFullName(task.user);
+
     return (
         <div>
             <div className="detailsHeader">
@@ -18,7 +22,7 @@ export const TaskDetails = ({ task, setSelectedTask } : TaskDetailsProps) => {
             <div className="detailsContent">
                 <div><b>Statut : </b>{task.done ? <Tag color={'success'} icon={<CheckCircleOutlined />}>Terminée</Tag> : <Tag color={'error'} icon={<SyncOutlined />}>A faire</Tag>}</div>
                 <div><b>Créée le : </b> {new Date(task.createdAt).toLocaleDateString('fr-FR')}</div>
-                <div><b>Par : </b> User</div>
+                <div><b>Par : </b> {fullname}</div>
             </div>
         </div>
     )

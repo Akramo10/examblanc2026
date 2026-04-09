@@ -4,10 +4,13 @@ import { Tasks } from "../Tasks/Tasks"
 import { Login } from "../Login/Login";
 import { Button } from "antd";
 import { UserSwitchOutlined } from "@ant-design/icons";
+import { useFullName } from "@/hooks/useFullName";
 
 export const TodoList = () => {
 
     const [selectedUser, setSelectedUser] = useState<UserType>();
+
+    const fullName = useFullName(selectedUser);
 
     return (
         <>
@@ -15,7 +18,7 @@ export const TodoList = () => {
                 <>
                     <div>
                         <b>Utilisateur sélectionné : </b> 
-                        {selectedUser.name + ' ' + selectedUser.firstname} 
+                        {fullName} 
                         <Button type="primary" icon={<UserSwitchOutlined />} onClick={() => setSelectedUser(undefined)} style={{float: 'right'}} />
                     </div>
                     <br />

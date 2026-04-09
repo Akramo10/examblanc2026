@@ -11,5 +11,6 @@ export type TaskDetailsType = {
     _id: number;
     name: string;
     done: boolean;
+    user: UserType;
     createdAt: Date;
 }
