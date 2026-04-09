@@ -21,7 +21,7 @@ export const TodoList = () => {
                     <br />
                     <hr />
                     <br />
-                    <Tasks />
+                    <Tasks selectedUser={selectedUser} />
                 </>
             :
                 <Login onSelectUser={setSelectedUser} />

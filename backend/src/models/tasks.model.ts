@@ -1,4 +1,5 @@
 import { Document, model, Schema, Types } from "mongoose";
+import { IUser, UserSchema } from "./users.model";
 
 const TaskSchema: Schema = new Schema(
   {
@@ -14,6 +15,7 @@ const TaskSchema: Schema = new Schema(
       type: Date,
       default: new Date(),
     },
+    user: UserSchema
   },
   { versionKey: false }
 );
@@ -23,6 +25,7 @@ export interface ITask {
   name: String;
   done: Boolean;
   createdAt: Date;
+  user: IUser;
 }
 
 export interface Task extends Omit<ITask, "_id">, Document {}

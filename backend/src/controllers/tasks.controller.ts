@@ -12,7 +12,8 @@ export const getTask = async (req: any, res: any) => {
 };
 
 export const createTask = async (req: any, res: any) => {
-  const task = await TasksService.createTask(req.body);
+  const { name, user } = req.body;
+  const task = await TasksService.createTask(name, user);
   return res.status(201).json(task);
 };
 

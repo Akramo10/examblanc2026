@@ -1,21 +1,26 @@
-### Récupération de tous les articles
+### Récupération de toutes les tâches
 GET http://{{host}}:{{port}}/tasks
 
 
-### Récupération d'un article
+### Récupération d'une tâche
 GET http://{{host}}:{{port}}/tasks/69bd2b8342a5908145d7867b
 
 
-### Création d'un article
+### Création d'une tâche
 POST http://{{host}}:{{port}}/tasks
 content-type: application/json
 
 {
-  "name": "Nouvelle tâche"
+  "name": "Nouvelle tâche test http",
+  "user" : {
+    "_id": "69d7831978a00baaa88d4f9c",
+    "name": "DOE",
+    "firstname": "John"
+  }
 }
 
 
-### Mise à jour d'un article
+### Mise à jour d'une tâche
 PUT http://{{host}}:{{port}}/tasks/69bd2e80038d3eaacee419ad
 content-type: application/json
 
@@ -25,5 +30,5 @@ content-type: application/json
 }
 
 
-### Suppression d'un article
+### Suppression d'une tâche
 DELETE http://{{host}}:{{port}}/tasks/69bd2e99038d3eaacee419b2

@@ -5,8 +5,13 @@ import { AddTask } from "../AddTask/AddTask";
 import { Filters } from "../Filters/Filters";
 import { Task } from "../Task/Task";
 import { TaskDetails } from "../TaskDetails/TaskDetails";
+import { UserType } from "@/types/user.type";
 
-export const Tasks = () => {
+type TasksProps = {
+    selectedUser: UserType;
+}
+
+export const Tasks = ({ selectedUser } : TasksProps) => {
 
     const [tasks, setTasks] = useState<TaskType[]>([]);
     const [filteredTasks, setFilteredTasks] = useState<TaskType[]>([]);
@@ -32,7 +37,7 @@ export const Tasks = () => {
     }    
 
     const createTask = async (name: string) => {
-        const { data } = await axios.post(`http://localhost:5000/tasks/`, {name});
+        const { data } = await axios.post(`http://localhost:5000/tasks/`, {name, user: selectedUser});
         setTasks([...tasks, data]);
     }
 
