@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { router } from "./routes/tasks.route";
+import { tasksRouter } from "./routes/tasks.route";
+import { usersRouter } from "./routes/users.route";
 
 const hostname = "127.0.0.1";
 const port = 5000;
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
   res.send("Hello !");
 });
 
-app.use("/tasks", router);
+app.use("/tasks", tasksRouter);
+app.use("/users", usersRouter);
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
