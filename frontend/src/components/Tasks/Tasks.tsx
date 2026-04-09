@@ -54,6 +54,7 @@ export const Tasks = () => {
 
     const onSelectFilter = (done?: boolean) => {
         setActiveFilter(done);
+        setSelectedTask(undefined);
     }
 
     const filter = () => {
