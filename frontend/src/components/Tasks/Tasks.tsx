@@ -15,7 +15,7 @@ export const Tasks = ({ selectedUser } : TasksProps) => {
 
     const [tasks, setTasks] = useState<TaskType[]>([]);
     const [filteredTasks, setFilteredTasks] = useState<TaskType[]>([]);
-    const [activeFilter, setActiveFilter] = useState<boolean>();
+    const [activeFilter, setActiveFilter] = useState<string>();
     const [selectedTask, setSelectedTask] = useState<TaskDetailsType>();
 
     useEffect(() => {
@@ -55,13 +55,17 @@ export const Tasks = ({ selectedUser } : TasksProps) => {
         setTasks(tasks?.filter((t) => t._id !== task._id));
     }
 
-    const onSelectFilter = (done?: boolean) => {
+    const onSelectFilter = (done: string) => {
         setActiveFilter(done);
         setSelectedTask(undefined);
     }
 
     const filter = () => {
-        setFilteredTasks(activeFilter !== undefined ? tasks.filter((t) => t.done === activeFilter) : tasks)
+        let filteredTasks = tasks;
+        if(activeFilter === 'done') filteredTasks = tasks.filter((t) => t.done);
+        if(activeFilter === 'todo') filteredTasks = tasks.filter((t) => !t.done);
+        if(activeFilter === 'mine') filteredTasks = tasks.filter((t) => t.user?._id === selectedUser._id);
+        setFilteredTasks(filteredTasks);
     }  
 
     const showDetails = async (task: TaskType) => {

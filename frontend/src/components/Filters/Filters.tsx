@@ -1,23 +1,26 @@
 import { useState } from "react";
 
 type FiltersProps = {
-    onFilter: (done?: boolean) => void
+    onFilter: (done: string) => void
 }
 
 export const Filters = ({ onFilter }: FiltersProps) => {
 
-    const [selectedFilter, setSelectedFilter] = useState<number>(0);
+    const [selectedFilter, setSelectedFilter] = useState<string>('all');
 
-    const filter = (done: boolean | null) => {
-        onFilter(done === null ? undefined : done);
-        setSelectedFilter(done === null ? 0 : done ? 2 : 1)
+    const filter = (done: 'all' | 'todo' | 'done' | 'mine') => {
+        onFilter(done);
+        setSelectedFilter(done)
     }
 
     return (
         <div className="filters">
-            <button className={selectedFilter === 0 ? "active" : ""} onClick={() => filter(null)}>Toutes</button>
-            <button className={selectedFilter === 1 ? "active" : ""} onClick={() => filter(false)}>A faire</button>
-            <button className={selectedFilter === 2 ? "active" : ""} onClick={() => filter(true)}>Terminées</button>
+            <button className={selectedFilter === 'all' ? "active" : ""} onClick={() => filter('all')}>Toutes</button>
+            <button className={selectedFilter === 'todo' ? "active" : ""} onClick={() => filter('todo')}>A faire</button>
+            <button className={selectedFilter === 'done' ? "active" : ""} onClick={() => filter('done')}>Terminées</button>
+
+            
+            <button className={selectedFilter === 'mine' ? "active" : ""} onClick={() => filter('mine')}>Mes tâches</button>
         </div>
     )
 }
