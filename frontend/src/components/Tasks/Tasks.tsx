@@ -68,7 +68,9 @@ export const Tasks = () => {
     return (
         <>
             <h1>TODO-LIST</h1>
-            <h3>Liste des tâches à réaliser</h3>
+            <br />
+            <h4>Liste des tâches à réaliser</h4>
+            <br />
             <AddTask onAdd={createTask} />
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 {
