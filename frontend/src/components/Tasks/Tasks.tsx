@@ -79,12 +79,14 @@ export const Tasks = ({ selectedUser } : TasksProps) => {
             <br />
             <AddTask onAdd={createTask} />
             <div style={{display: 'flex', flexDirection: 'column'}}>
+                {filteredTasks.length === 0 && <div>Aucune tâche à afficher</div>}
                 {
                     filteredTasks?.map((task) => (
                         <Task key={task._id} task={task} selectedUser={selectedUser} onCheck={checkUncheck} onEdit={updateTask} onDelete={deleteTask} onTaskClick={showDetails} />
                     ))
                 }
             </div>
+            <br />
             <Filters onFilter={onSelectFilter} />
 
             
