@@ -5,8 +5,6 @@ import { AddTask } from "../AddTask/AddTask";
 import { Filters } from "../Filters/Filters";
 import { Task } from "../Task/Task";
 import { TaskDetails } from "../TaskDetails/TaskDetails";
-import { Button } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 
 export const Tasks = () => {
 

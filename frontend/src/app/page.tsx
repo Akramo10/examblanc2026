@@ -1,11 +1,11 @@
 "use client";
 
-import { Tasks } from "@/components/Tasks/Tasks";
+import { TodoList } from "@/components/TodoList/TodoList";
 
 export default function Home() {
   return (
     <div className="container">
-      <Tasks />
+      <TodoList />
     </div>
   )
 }
