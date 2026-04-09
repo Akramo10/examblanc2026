@@ -2,6 +2,7 @@ import './globals.css'
 import './../components/AddTask/AddTask.style.css'
 import './../components/Filters/Filters.style.css'
 import './../components/Tasks/Tasks.style.css'
+import './../components/TaskDetails/TaskDetails.style.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })

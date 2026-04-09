@@ -1,0 +1,10 @@
+.detailsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detailsContent {
+    display: flex;
+    flex-direction: column;
+}

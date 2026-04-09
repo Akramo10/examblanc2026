@@ -86,8 +86,7 @@ export const Tasks = () => {
                 selectedTask ? (
                     <>
                         <hr /> 
-                        <TaskDetails task={selectedTask} />
-                        <Button icon={<CloseOutlined />} onClick={() => setSelectedTask(undefined)} />
+                        <TaskDetails task={selectedTask} setSelectedTask={setSelectedTask} />
                     </>
                 ) : <></>
             }
